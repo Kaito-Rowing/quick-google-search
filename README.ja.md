@@ -29,7 +29,7 @@ Webページでテキストを選択し、丸い検索ボタンをクリック�
 
 現在、Chrome ウェブストアには掲載していません。ローカルにインストールできます。
 
-1. [ソースZIPをダウンロード](https://github.com/Kaito-Rowing/quick-google-search/archive/refs/heads/main.zip)して展開するか、このリポジトリをcloneします。
+1. [拡張機能のZIPをダウンロード](https://github.com/Kaito-Rowing/quick-google-search/releases/download/v1.0.1/quick-google-search-1.0.1.zip)して展開するか、このリポジトリをcloneします。
 2. Chromeで `chrome://extensions` を開きます。
 3. **デベロッパー モード**を有効にします。
 4. **パッケージ化されていない拡張機能を読み込む**を選び、`manifest.json` が入っているフォルダを指定します。

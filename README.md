@@ -29,7 +29,7 @@ Select text on a web page and click the round search button. Google opens in a n
 
 There is currently no Chrome Web Store listing. Install locally:
 
-1. [Download the source ZIP](https://github.com/Kaito-Rowing/quick-google-search/archive/refs/heads/main.zip) and extract it, or clone this repository.
+1. [Download the extension ZIP](https://github.com/Kaito-Rowing/quick-google-search/releases/download/v1.0.1/quick-google-search-1.0.1.zip) and extract it, or clone this repository.
 2. Open `chrome://extensions` in Chrome.
 3. Turn on **Developer mode**.
 4. Choose **Load unpacked** and select the folder containing `manifest.json`.

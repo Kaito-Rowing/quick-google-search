@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 — Unreleased
+## 1.0.1 — 2026-11-09
 
 ### Fixed
 - Isolate the selection button in Shadow DOM and reset its transparent host, preventing page styles from creating a square border or background.
