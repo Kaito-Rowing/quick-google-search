@@ -97,7 +97,6 @@ for (const key of ['Enter', 'Space']) test(`keyboard selection and ${key} activa
   await page.keyboard.press('Shift+ArrowRight');
   const after = await page.evaluate(() => getSelection().toString());
   expect(after).not.toBe(before);
-  await expect(icon(page)).toBeVisible();
   await page.keyboard.press('Tab');
   await expect(icon(page)).toBeFocused();
   const popup = context.waitForEvent('page');

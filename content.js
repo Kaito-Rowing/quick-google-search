@@ -148,8 +148,11 @@
   document.addEventListener('keydown', event => {
     // Move directly from a selection to its action without traversing page forms.
     if (event.key === 'Tab' && !event.shiftKey && !event.ctrlKey && !event.altKey && !event.metaKey &&
-        query && document.activeElement !== host && readSelection()) {
+        !dismissed && !dragging && document.activeElement !== host && readSelection()) {
       event.preventDefault();
+      // A selectionchange may still be waiting for the debounced repaint.
+      clearTimeout(timer);
+      update();
       button.focus({ preventScroll: true });
       return;
     }
