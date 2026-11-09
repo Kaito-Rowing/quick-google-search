@@ -1,19 +1,21 @@
 {
   "manifest_version": 3,
   "name": "Quick Google Search",
-  "version": "1.0.0",
-  "description": "選択したテキストをワンクリックでGoogle検索できます。",
+  "version": "1.0.1",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+  "homepage_url": "https://github.com/Kaito-Rowing/quick-google-search",
   "permissions": [],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["styles.css"]
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"]
     }
   ],
   "icons": {
-    "16": "icons/icon16.svg",
-    "48": "icons/icon48.svg",
-    "128": "icons/icon128.svg"
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }

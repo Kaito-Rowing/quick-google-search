@@ -1,96 +1,84 @@
-# Quick Google Search
+<p align="center"><img src="icons/icon128.png" width="72" height="72" alt=""></p>
 
-選択したテキストの近くに検索アイコンを表示し、クリックするとGoogle検索を開くChrome拡張機能です。
+<h1 align="center">Quick Google Search</h1>
 
-## 機能
+<p align="center">Select a thought. Keep exploring.</p>
+<p align="center">A tiny Chrome extension that puts Google Search next to the text you select.</p>
 
-- Webページ上でテキストを選択すると検索アイコンを表示します。
-- アイコンをクリックすると、選択したテキストでGoogle検索を新しいタブに開きます。
-- 拡張機能の権限は追加していません。
-- 選択テキストは保存せず、クリックした時だけGoogle検索URLに渡します。
+<p align="center">
+  <img alt="Manifest V3" src="https://img.shields.io/badge/Chrome-Manifest_V3-2563eb">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-16803d"></a>
+  <img alt="No runtime dependencies" src="https://img.shields.io/badge/runtime_dependencies-0-475569">
+</p>
 
-## インストール方法
+<p align="center">English · <a href="README.ja.md">日本語</a></p>
 
-1. このリポジトリをダウンロード、またはcloneします。
-2. Chromeで `chrome://extensions/` を開きます。
-3. 右上の「デベロッパー モード」を有効にします。
-4. 「パッケージ化されていない拡張機能を読み込む」をクリックします。
-5. このリポジトリのフォルダを選択します。
+![Quick Google Search beside selected text on a sample article](docs/demo.png)
 
-## 権限とセキュリティ
+## A shorter path from reading to searching
 
-- `permissions` は空配列です。
-- `content_scripts.matches` は `<all_urls>` です。これは、任意のページでテキスト選択を検出して検索アイコンを表示するために必要です。
-- 外部通信は、ユーザーが検索アイコンをクリックした時にGoogle検索ページを新しいタブで開く動作だけです。
-- `eval`、動的スクリプト実行、ストレージ保存、外部API通信、リモートコード読み込みは使用していません。
-- 検索タブは `noopener,noreferrer` 付きで開き、開いたページから元ページを参照できないようにしています。
+Select text on a web page and click the round search button. Google opens in a new tab; your reading stays where it was. No setup, account or search history inside the extension.
 
-## オープンソースと透明性
+- **One purpose.** A selection, a button, a Google search.
+- **Keyboard friendly.** Select with the keyboard, Tab to the button, and press Enter or Space. Escape dismisses it.
+- **Fits the page.** The button stays within the viewport and its styles are isolated from the site.
+- **Quiet by default.** No analytics, ads, background requests or stored selections.
+- **English and Japanese.** The search button follows Chrome's language.
 
-ブラウザ拡張機能は表示中のページ上で動くため、どんな処理をしているのか不安になりやすい種類のソフトウェアです。この拡張機能は完全にオープンソースで、実際に動くコードをこのリポジトリ上で確認できます。
+## Install
 
-安心材料として、次の点を明確にしています。
+There is currently no Chrome Web Store listing. Install locally:
 
-- Chrome拡張機能の追加権限を要求しません。
-- 選択したテキスト、閲覧履歴、ページ内容を保存しません。
-- 外部サーバーへバックグラウンド送信しません。
-- ユーザーが検索アイコンをクリックした時だけ、選択テキストをGoogle検索URLに入れて新しいタブを開きます。
-- ビルド手順がないため、リポジトリ内のファイルがそのまま拡張機能として読み込まれます。
+1. [Download the extension ZIP](https://github.com/Kaito-Rowing/quick-google-search/releases/download/v1.0.1/quick-google-search-1.0.1.zip) and extract it, or clone this repository.
+2. Open `chrome://extensions` in Chrome.
+3. Turn on **Developer mode**.
+4. Choose **Load unpacked** and select the folder containing `manifest.json`.
+5. Refresh any web pages that were already open.
 
-## 開発
+If you receive a packaged release ZIP, extract it and select that extracted folder in step 4. Keep the folder in place while the extension is installed.
 
-この拡張機能はビルド手順なしで動作します。ファイルを編集した後は、`chrome://extensions/` で拡張機能を再読み込みしてください。
+## Use
 
-主要ファイル:
+1. Select a word or passage on a regular web page.
+2. Click the search button beside your selection.
+3. Continue in the new Google Search tab.
 
-- `manifest.json`: Chrome拡張機能の定義
-- `content.js`: 選択テキストの検出と検索アイコンの動作
-- `styles.css`: 検索アイコンのスタイル
-- `icons/`: 拡張機能アイコン
+The button disappears when you clear the selection, press Escape, scroll, resize or leave the tab. Selecting text never starts a search by itself.
 
-## English
+### Where it works
 
-Quick Google Search is a Chrome extension that shows a search icon near selected text and opens a Google search for that text when clicked.
+The extension runs on HTTP and HTTPS pages in the main frame. Chrome internal pages, the Chrome Web Store, built-in PDF viewer and local files are not supported. Text inside frames or closed shadow trees is not supported. Some sites with custom selection handling or unusual layouts may prevent the button from appearing correctly.
 
-### Features
+Form fields and editable regions are intentionally excluded, including passwords, text inputs, textareas and rich-text editors. Very long passages may exceed the browser or Google's URL limits; search shorter selections in that case.
 
-- Shows a search icon when text is selected on a web page.
-- Opens a Google search for the selected text in a new tab.
-- Uses no extension permissions.
-- Does not store selected text. The text is only sent as part of the Google search URL after the user clicks the icon.
+## Privacy & page access
 
-### Installation
+The extension requests no additional API permissions. It **does have access to HTTP and HTTPS pages** through its declared content script; Chrome may describe this as access to read and change site data. That access is used to detect selections and insert the button. You can restrict site access in Chrome's extension settings.
 
-1. Download or clone this repository.
-2. Open `chrome://extensions/` in Chrome.
-3. Enable "Developer mode".
-4. Click "Load unpacked".
-5. Select this repository folder.
+Selected text is held temporarily in memory and cleared when the button is hidden. The extension does not write it to storage or send it in the background. Only an explicit search sends the selection to `https://www.google.com/search` as a URL query. Google and your browser may retain that URL under their own settings and policies. The new tab uses `noopener,noreferrer`.
 
-### Permissions and Security
+Read the [privacy policy](PRIVACY.md) for details. Quick Google Search is an independent project, not affiliated with Google.
 
-- `permissions` is an empty array.
-- `content_scripts.matches` uses `<all_urls>` so the extension can detect selected text and show the search icon on any page.
-- The only external navigation happens when the user clicks the search icon, which opens Google Search in a new tab.
-- The extension does not use `eval`, dynamic script execution, local storage, external API calls, or remote code loading.
-- Search tabs are opened with `noopener,noreferrer` so the opened page cannot reference the original page.
+## Development
 
-### Open Source and Transparency
+The extension runs directly from source, with **no build step or runtime dependencies**. Node.js 24 and npm are needed only for development checks and packaging.
 
-Browser extensions can feel sensitive because they run on pages you visit. This extension is fully open source, and the exact code that runs is available in this repository.
+```sh
+npm ci
+npx playwright install chromium
+npm run check
+npm test
+npm run package
+```
 
-The safety model is intentionally simple:
+`npm test` loads the actual extension in Playwright's Chromium and checks search navigation, selection handling, keyboard controls, page-style isolation and viewport bounds. `npm run package` produces `dist/quick-google-search-1.0.1.zip` with an explicit runtime-file allowlist. CI runs the same checks and uploads the ZIP as a workflow artifact.
 
-- It requests no additional Chrome extension permissions.
-- It does not store selected text, browsing history, or page content.
-- It does not send data to any background server.
-- It only places the selected text into a Google Search URL after the user clicks the search icon.
-- There is no build step, so the files in this repository are the files loaded by Chrome.
+After editing, reload the extension at `chrome://extensions` and refresh your test page. See [CONTRIBUTING.md](CONTRIBUTING.md) for the manual checks and [the release guide](docs/RELEASING.md) for publishing steps.
 
-### Development
+## Feedback
 
-No build step is required. After editing files, reload the extension from `chrome://extensions/`.
+Found a page where selection behaves strangely? [Open an issue](https://github.com/Kaito-Rowing/quick-google-search/issues/new/choose) with your Chrome version, a public example URL and steps to reproduce. Please leave private page content out of reports.
 
 ## License
 
-MIT
+[MIT](LICENSE) © 2026 Kaito-Rowing
