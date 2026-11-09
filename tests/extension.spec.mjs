@@ -95,7 +95,8 @@ for (const key of ['Enter', 'Space']) test(`keyboard selection and ${key} activa
   await expect(icon(page)).toBeVisible();
   const before = await page.evaluate(() => getSelection().toString());
   await page.keyboard.press('Shift+ArrowRight');
-  expect(await page.evaluate(() => getSelection().toString())).not.toBe(before);
+  const after = await page.evaluate(() => getSelection().toString());
+  expect(after).not.toBe(before);
   await expect(icon(page)).toBeVisible();
   await page.keyboard.press('Tab');
   await expect(icon(page)).toBeFocused();
@@ -103,7 +104,7 @@ for (const key of ['Enter', 'Space']) test(`keyboard selection and ${key} activa
   await page.keyboard.press(key);
   const destination = await popup;
   await destination.waitForLoadState();
-  expect(new URL(destination.url()).searchParams.get('q')).not.toBe(before);
+  expect(new URL(destination.url()).searchParams.get('q')).toBe(after.trim());
 });
 
 test('editors, password fields and empty selections are excluded', async ({ page }) => {
