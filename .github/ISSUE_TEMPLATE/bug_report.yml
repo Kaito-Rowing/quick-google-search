@@ -1,0 +1,22 @@
+name: Bug report
+description: Report unexpected selection or search behavior.
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include a public example URL if possible. Do not include private selected text.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Chrome version and operating system
+    validations:
+      required: true
